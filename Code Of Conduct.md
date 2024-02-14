@@ -1,6 +1,6 @@
-Code of Conduct | SET08103 Software Engineering Methods (SEM) Coursework
+## Code of Conduct | SET08103 Software Engineering Methods (SEM) Coursework
 
-This document pertains to the conduct expected in the coursework group of the SET08103 Software Engineering Methods module. From members of Group 5: Nathan Preece, Leo Rojboonthueng, Berdan Tek, and Chilume Nchidzi.
+### This document pertains to the conduct expected in the coursework group of the SET08103 Software Engineering Methods module. From members of Group 5: Nathan Preece, Leo Rojboonthueng, Berdan Tek, and Chilume Nchidzi.
 
 All members of the team have collectively agreed upon the contents of this document, which will be upheld and enforced by the team. Any student who breaks the rules mentioned here will face consequences. Suitable punishment as determined by the rest of the team. The severity of these punishments is subject to change.
 
