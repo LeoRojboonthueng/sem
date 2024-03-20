@@ -9,10 +9,10 @@ class App {
 
         // Connect to database
         a.connect();
-        // Get Employee
-        Employee emp = a.getEmployee(255530);
+        // Get City
+        City city = a.getCity(1);
         // Display results
-        a.displayEmployee(emp);
+        a.displayCity(city);
 
         // Disconnect from database
         a.disconnect();
@@ -42,7 +42,7 @@ class App {
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/employees?useSSL=false", "root", "");
+                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/world", "root", "qdrwb");
                 System.out.println("Successfully connected");
                 break;
             } catch (SQLException sqle) {
@@ -68,51 +68,49 @@ class App {
         }
     }
 
-    // Method to extract Employee data
-    public Employee getEmployee(int ID) {
+    // Method to extract City data
+    public City getCity(int ID) {
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT emp_no, first_name, last_name "
-                            + "FROM employees "
-                            + "WHERE emp_no = " + ID;
-            // Execute SQL statement
+                    "SELECT * FROM City ";
+            // Execute SQL statement on database
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new employee if valid.
+            // Return new city if valid.
             // Check one is returned
             if (rset.next())
             // Setting all columns to variables
             {
-                Employee emp = new Employee();
-                emp.emp_no = rset.getInt("emp_no");
-                emp.first_name = rset.getString("first_name");
-                emp.last_name = rset.getString("last_name");
-                return emp;
+                City city = new City();
+                city.setID(rset.getInt("ID"));
+                city.setName(rset.getString("Name"));
+                city.setCountryCode(rset.getString("CountryCode"));
+                city.setDistrict(rset.getString("District"));
+                city.setPopulation(rset.getString("Population"));
+                return city;
             } else
                 return null;
         }
         // Catch any exception and provide details
         catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get city details");
             return null;
         }
     }
     // A method used to display employee info to the console
-    public void displayEmployee(Employee emp)
+    public void displayCity(City city)
     {
-        if (emp != null)
+        if (city != null)
         {
             System.out.println(
-                    emp.emp_no + " "
-                            + emp.first_name + " "
-                            + emp.last_name + "\n"
-                            + emp.title + "\n"
-                            + "Salary:" + emp.salary + "\n"
-                            + emp.dept_name + "\n"
-                            + "Manager: " + emp.manager + "\n");
+                    city.getID() + " "
+                            + city.getName() + " "
+                            + city.getCountryCode() + "\n"
+                            + city.getDistrict() + "\n"
+                            + city.getPopulation() + "\n");
         }
     }
 }
