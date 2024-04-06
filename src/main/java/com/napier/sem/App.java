@@ -39,17 +39,18 @@ class App {
         for (int i = 0; i < retries; ++i) {
             System.out.println("Connecting to database...");
             try {
-                // Wait a bit for db to start
-                Thread.sleep(30000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/world", "root", "qdrwb");
+                con = DriverManager.getConnection("jdbc:mysql://sem-db-1:3306/world", "root", "qdrwb");
                 System.out.println("Successfully connected");
                 break;
             } catch (SQLException sqle) {
                 System.out.println("Failed to connect to database attempt " + Integer.toString(i));
                 System.out.println(sqle.getMessage());
-            } catch (InterruptedException ie) {
-                System.out.println("Thread interrupted? Should not happen.");
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
     }
@@ -75,7 +76,7 @@ class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT * FROM City ";
+                    "SELECT * FROM city ";
             // Execute SQL statement on database
             ResultSet rset = stmt.executeQuery(strSelect);
             // Return new city if valid.
