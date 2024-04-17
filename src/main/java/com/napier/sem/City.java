@@ -39,7 +39,7 @@ public class City {
     }
     // Setter to modify a city's district
     public void setDistrict(String newDistrict){
-        this.countryCode = newDistrict;
+        this.district = newDistrict;
     }
     // Defining a city's population
     private String population;
@@ -49,6 +49,6 @@ public class City {
     }
     // Setter to modify a city's district
     public void setPopulation(String newPopulation){
-        this.countryCode = newPopulation;
+        this.population = newPopulation;
     }
 }

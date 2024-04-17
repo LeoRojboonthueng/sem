@@ -34,10 +34,15 @@ class App {
             System.out.println("Could not load SQL driver");
             System.exit(-1);
         }
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 
-        int retries = 10;
-        for (int i = 0; i < retries; ++i) {
+        for (int i = 0; i < 10; ++i) {
             System.out.println("Connecting to database...");
+
             try {
                 // Connect to database
                 con = DriverManager.getConnection("jdbc:mysql://sem-db-1:3306/world", "root", "qdrwb");
@@ -46,11 +51,7 @@ class App {
             } catch (SQLException sqle) {
                 System.out.println("Failed to connect to database attempt " + Integer.toString(i));
                 System.out.println(sqle.getMessage());
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+
             }
         }
     }
